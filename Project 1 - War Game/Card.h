@@ -12,8 +12,9 @@
 class Card {
 	char suit;
 	int rank;
-	Card();
+
 public:
+	Card();
 	Card(const char & suit, const int & rank);
 	int getValue();
 	void displayCard();

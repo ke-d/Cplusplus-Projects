@@ -10,7 +10,7 @@
 #include "Card.h"
 
 class CardDeck {
-	Card deck[2];
+	Card * deckPointer[2];
 public:
 	CardDeck();
 	void displayCardAt(const int & index);
