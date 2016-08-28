@@ -1,20 +1,11 @@
 #include "CardDeck.h"
 #include "Card.h"
 #include <iostream>
-
-const char * ACE = "Ace";
-const char * JACK = "Jack";
-const char * QUEEN = "Queen";
-const char * KING = "King";
-
-const char * SPADES = "Spades";
-const char * CLUBS = "Clubs";
-const char * DIAMONDS = "Diamonds";
-const char * HEARTS = "Hearts";
-
+#include <cstdlib>
+#include <time.h>
 
 CardDeck::CardDeck() {
-	cardsLeftInDeck = 52;
+	resetDeck();
 }
 
 void CardDeck::displayCardAt(const int & index) {
@@ -22,15 +13,39 @@ void CardDeck::displayCardAt(const int & index) {
 }
 
 int CardDeck::deal() {
-	return 0;
+	if(cardsLeftInDeck > 0) {
+	cardsLeftInDeck--;
+	return deck[cardsLeftInDeck].getValue();
+	} else {
+		std::cout << "No more cards in deck" <<std::endl;
+	}
 }
 
 int CardDeck::cardsLeft() {
-	return 0;
+	return cardsLeftInDeck;
 }
 
 void CardDeck::shuffle() {
+	srand(time(NULL));
+	//Gets a random number
+	for(unsigned int i = 0; i < cardsLeftInDeck;i++){
+		swap(i, (rand() % cardsLeftInDeck));
+	}
+}
+
+void CardDeck::swap(const int & index, const int & newIndex) {
+	Card temp = deck[newIndex];
+	deck[newIndex] = deck[index];
+	deck[index] = temp;
+}
+
+void CardDeck::printDeck() {
 	for(unsigned int i = 0; i < cardsLeftInDeck;i++){
 		deck[i].displayCard();
 	}
+}
+
+void CardDeck::resetDeck() {
+	cardsLeftInDeck = 52;
+	shuffle();
 }

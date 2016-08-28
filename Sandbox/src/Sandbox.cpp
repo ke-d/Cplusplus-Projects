@@ -9,18 +9,11 @@
 #include <iostream>
 using namespace std;
 
-void printInt(const int & num) {
-	cout << "method: " << num <<endl;
-}
+enum color{RED,BLUE,GREEN};
+
+
 
 int main() {
-	int num = 5;
-	int & ref = num;
-	ref = 10;
-	printInt(num);
-
-	const char * test = "test";
-
-	cout << test <<endl;
+	cout << RED;
 	return 0;
 }
