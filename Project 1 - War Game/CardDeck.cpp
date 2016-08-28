@@ -14,12 +14,11 @@ const char * HEARTS = "Hearts";
 
 
 CardDeck::CardDeck() {
-	deckPointer = {Card('s',1), Card('s',2)};
-
+	cardsLeftInDeck = 52;
 }
 
 void CardDeck::displayCardAt(const int & index) {
-	std::cout << deckPointer[index]->displayCard();
+	deck[index].displayCard();
 }
 
 int CardDeck::deal() {
@@ -31,6 +30,7 @@ int CardDeck::cardsLeft() {
 }
 
 void CardDeck::shuffle() {
-
+	for(unsigned int i = 0; i < cardsLeftInDeck;i++){
+		deck[i].displayCard();
+	}
 }
-
