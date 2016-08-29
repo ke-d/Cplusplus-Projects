@@ -1,7 +1,15 @@
+/**
+ * Kenny Do
+ * CECS 282
+ * 9/12/2016
+ */
 #include <iostream>
 #include "CardDeck.h"
 using namespace std;
 
+/**
+ * Returns the integer of the menu selection of the user
+ */
 int menu() {
 	cout << "1. Get a new card deck" <<endl;
 	cout << "2. Show all cards in the deck" <<endl;
@@ -17,6 +25,9 @@ int menu() {
 	return choice;
 }
 
+/**
+ * Plays the WAR game
+ */
 void playWar(CardDeck & warGame) {
 	cout << "Get ready to play two-card WAR!!!"<<endl;
 	char input = 'Y';
@@ -72,8 +83,8 @@ int main() {
 			warGame.printDeck();
 			break;
 		case 3:
-			cout << "Deck Shuffled."<<endl;
 			warGame.shuffle();
+			cout << "Deck Shuffled."<<endl;
 			break;
 		case 4:
 			playWar(warGame);

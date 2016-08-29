@@ -12,15 +12,11 @@
 class Card {
 	char suit;
 	int rank;
-
-public:
 	Card();
+public:
 	Card(const char & suit, const int & rank);
 	int getValue();
 	void displayCard();
 };
-
-
-
 
 #endif /* CARD_H_ */

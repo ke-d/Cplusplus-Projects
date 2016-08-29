@@ -1,23 +1,35 @@
+/**
+ * Kenny Do
+ * CECS 282
+ * 9/12/2016
+ */
 #include "Card.h"
 #include <iostream>
 using namespace std;
 
+//Constants of ranks
 const char * ACE = "Ace";
 const char * JACK = "Jack";
 const char * QUEEN = "Queen";
 const char * KING = "King";
 
+//Constants of suits
 const char * SPADES = "Spades";
 const char * CLUBS = "Clubs";
 const char * DIAMONDS = "Diamonds";
 const char * HEARTS = "Hearts";
 
-
+/**
+ * Sets the card suit and rank
+ */
 Card::Card(const char & suit, const int & rank) {
 	this->suit = suit;
 	this->rank = rank;
 }
 
+/**
+ * Returns the point value of the card
+ */
 int Card::getValue() {
 	if(rank <= 10) {
 		return rank;
@@ -26,6 +38,9 @@ int Card::getValue() {
 	}
 }
 
+/**
+ * Displays the card in the format "The card is (rank) of (suit)"
+ */
 void Card::displayCard() {
 	cout << "The card is ";
 	if (rank > 1 && rank < 11) {
