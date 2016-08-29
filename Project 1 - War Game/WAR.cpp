@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Card.h"
 #include "CardDeck.h"
 using namespace std;
 
@@ -12,7 +11,8 @@ int menu() {
 	int choice;
 	cin >> choice;
 	while(choice > 5 || choice < 1) {
-		cout << "Please pick a valid choice" <<endl;
+		cout << "Please pick a valid choice." <<endl;
+		cin >> choice;
 	}
 	return choice;
 }
@@ -24,7 +24,7 @@ void playWar(CardDeck & warGame) {
 		cout << "There are " << warGame.cardsLeft() << " cards in the deck." <<endl;
 		int playerYou = 0;
 		int playerMe = 0;
-		cout << "dealing..."<<endl;
+		cout << "...dealing...."<<endl;
 		cout << "One for you..."<<endl;
 		playerYou += warGame.deal();
 		cout << "One for me..."<<endl;
@@ -34,6 +34,7 @@ void playWar(CardDeck & warGame) {
 		cout << "Two for me..."<<endl;
 		playerMe += warGame.deal();
 
+		cout <<endl;
 		cout << "You have "<< playerYou << " points."<<endl;
 		cout << "I have "<< playerMe << " points."<<endl;
 
@@ -49,7 +50,7 @@ void playWar(CardDeck & warGame) {
 			cout << "Out of cards...Reseting Deck."<<endl;
 			warGame.resetDeck();
 		}
-		cout << "Wanna play again? (Y/N)" <<endl;
+		cout << "Wanna play again? (Y/N)." <<endl;
 		cin >> input;
 	}
 

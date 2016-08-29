@@ -43,9 +43,9 @@ void CardDeck::swap(const int & index, const int & newIndex) {
 
 void CardDeck::printDeck() {
 	for(unsigned int i = 0; i < cardsLeftInDeck;i++){
-		int incrimented = i;
-		incrimented++;
-		std::cout << incrimented << ". ";
+		int incremented = i;
+		incremented++;
+		std::cout << incremented << ". ";
 		deck[i].displayCard();
 	}
 }
