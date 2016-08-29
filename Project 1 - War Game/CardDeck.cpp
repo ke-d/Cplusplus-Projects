@@ -15,9 +15,11 @@ void CardDeck::displayCardAt(const int & index) {
 int CardDeck::deal() {
 	if(cardsLeftInDeck > 0) {
 	cardsLeftInDeck--;
+	displayCardAt(cardsLeftInDeck);
 	return deck[cardsLeftInDeck].getValue();
 	} else {
 		std::cout << "No more cards in deck" <<std::endl;
+		return 0;
 	}
 }
 
@@ -41,6 +43,9 @@ void CardDeck::swap(const int & index, const int & newIndex) {
 
 void CardDeck::printDeck() {
 	for(unsigned int i = 0; i < cardsLeftInDeck;i++){
+		int incrimented = i;
+		incrimented++;
+		std::cout << incrimented << ". ";
 		deck[i].displayCard();
 	}
 }
