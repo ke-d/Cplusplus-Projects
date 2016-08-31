@@ -21,9 +21,16 @@ int menu() {
 	cin.ignore(256, '\n');
 	choice -= 48;
 	while((int) choice < 1 || (int) choice > 5 ) {
+//		cout << choice << endl;
+		//Ï = 139 in char
+		if(choice = 139) {
+			//Terminates cleanly
+			return 5;
+		}
 		cout << "Please pick a valid choice." <<endl;
 		choice = cin.get();
 		choice -= 48;
+//		cout << choice << endl;
 		cin.ignore(256, '\n');
 	}
 	return choice;
@@ -67,6 +74,7 @@ void playWar(CardDeck & warGame) {
 		}
 		cout << "Wanna play again? (Y/N)." <<endl;
 		input = cin.get();
+		input = toupper(input);
 		cin.ignore(256, '\n');
 	}
 
@@ -77,7 +85,7 @@ void playWar(CardDeck & warGame) {
 int main() {
 	CardDeck warGame;
 
-	char menuChoice = menu();
+	int menuChoice = menu();
 	while(menuChoice != 5) {
 		switch(menuChoice) {
 		case 1:
@@ -96,7 +104,7 @@ int main() {
 			break;
 		}
 
-
+		cout << endl;
 		menuChoice = menu();
 	}
 
