@@ -67,6 +67,7 @@ void playWar(CardDeck & warGame) {
 		}
 		cout << "Wanna play again? (Y/N)." <<endl;
 		input = cin.get();
+		cin.ignore(256, '\n');
 	}
 
 
