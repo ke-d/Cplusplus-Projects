@@ -21,7 +21,6 @@ int menu() {
 	cin.ignore(256, '\n');
 	choice -= 48;
 	while((int) choice < 1 || (int) choice > 5 ) {
-//		cout << choice << endl;
 		//Ï = 139 in char
 		if(choice = 139) {
 			//Terminates cleanly
@@ -30,7 +29,6 @@ int menu() {
 		cout << "Please pick a valid choice." <<endl;
 		choice = cin.get();
 		choice -= 48;
-//		cout << choice << endl;
 		cin.ignore(256, '\n');
 	}
 	return choice;
