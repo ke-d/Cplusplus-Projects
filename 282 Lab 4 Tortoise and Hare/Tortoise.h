@@ -2,7 +2,7 @@
  * Tortoise.h
  *
  *  Created on: Sep 12, 2016
- *      Author: kdo70
+ *      Author: Kenny Do
  */
 
 #ifndef TORTOISE_H_

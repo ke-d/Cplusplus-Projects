@@ -2,7 +2,7 @@
  * Hare.h
  *
  *  Created on: Sep 12, 2016
- *      Author: kdo70
+ *      Author: Kenny Do
  */
 
 #ifndef HARE_H_

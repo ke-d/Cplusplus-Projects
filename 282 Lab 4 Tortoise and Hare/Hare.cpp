@@ -2,7 +2,7 @@
  * Hare.cpp
  *
  *  Created on: Sep 12, 2016
- *      Author: kdo70
+ *      Author: Kenny Do
  */
 #include "Hare.h"
 

@@ -2,7 +2,7 @@
  * Animal.h
  *
  *  Created on: Sep 12, 2016
- *      Author: kdo70
+ *      Author: Kenny Do
  */
 
 #ifndef ANIMAL_H_
