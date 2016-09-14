@@ -6,10 +6,17 @@
  */
 
 #include "Tortoise.h"
+
+/**
+ * Tortoise constructor inherits from animal
+ */
 Tortoise::Tortoise() {
 
 }
 
+/**
+ * Moves the Tortoise randomly
+ */
 void Tortoise::moveTortoise() {
 	int random = getRandomPercent();
 	if(random >= 1 && random <= 5) {

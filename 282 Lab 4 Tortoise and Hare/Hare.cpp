@@ -6,10 +6,16 @@
  */
 #include "Hare.h"
 
+/**
+ * Hare constructor inherits from animal
+ */
 Hare::Hare() {
 
 }
 
+/**
+ * Moves the Hare randomly
+ */
 void Hare::moveHare() {
 	int random = getRandomPercent();
 	if(random >= 1 && random <= 2) {

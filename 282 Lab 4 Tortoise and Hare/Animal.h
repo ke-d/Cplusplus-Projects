@@ -16,6 +16,7 @@ protected:
 public:
 	Animal();
 	int getPosition();
+	void finalPosition();
 	void resetPosition();
 
 };
