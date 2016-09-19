@@ -9,12 +9,18 @@
 #include <math.h>
 using namespace std;
 
+/**
+ * Default contructor
+ */
 myDate::myDate() {
 	month = 5;
 	day = 11;
 	year = 1959;
 }
 
+/**
+ * Constructor that takes in the month, day, and year
+ */
 myDate::myDate(int M, int D, int Y) {
 	if(M > 12 || M < 1 || D < 1 || D > 31) {
 		month = 5;
@@ -27,6 +33,9 @@ myDate::myDate(int M, int D, int Y) {
 	}
 }
 
+/**
+ * Displays the date
+ */
 void myDate::display() {
 	switch(month) {
 	case 1:
@@ -69,6 +78,9 @@ void myDate::display() {
 	cout << " " << day << ", " << year;
 }
 
+/**
+ * Increment the date by N
+ */
 void myDate::incrDate(int N) {
 	int julian = getJulianDate() + N;
 	myDate newCalendar = returnGregorian(julian);
@@ -77,6 +89,9 @@ void myDate::incrDate(int N) {
 	year = newCalendar.getYear();
 }
 
+/**
+ * Decrement the date by N
+ */
 void myDate::decrDate(int N) {
 	int julian = getJulianDate() - N;
 	myDate newCalendar = returnGregorian(julian);
@@ -85,31 +100,52 @@ void myDate::decrDate(int N) {
 	year = newCalendar.getYear();
 }
 
+/**
+ * Calculates the days between D and this date
+ */
 int myDate::daysBetween(myDate D) {
 	return D.getJulianDate() - getJulianDate();
 }
 
+/**
+ * Returns the month
+ */
 int myDate::getMonth() const {
 	return month;
 }
 
+/**
+ * Returns the day
+ */
 int myDate::getDay() const {
 	return day;
 }
 
+/**
+ * Returns the year
+ */
 int myDate::getYear() const {
 	return year;
 }
 
+/**
+ * Returns the days between this date and the start of the year
+ */
 int myDate::getYearOffset() const {
 	myDate start(1, 1, year);
 	return getJulianDate() - start.getJulianDate();
 }
 
+/**
+ * Returns the Julian number of this date
+ */
 double myDate::getJulianDate() const {
 	return day - 32075 + 1461 * (year + 4800 + (month - 14) / 12) / 4 +367 * (month - 2 - (month - 14) / 12 * 12) /12 - 3 * ((year +4900 + (month - 14) / 12) / 100) / 4;
 }
 
+/**
+ * Returns a myDate object that is calculated from the julian number
+ */
 myDate myDate::returnGregorian(int julian) {
 	const int temp11 = julian + 68569;
 	const int temp21 = 4 * temp11 / 146097;
@@ -122,6 +158,5 @@ myDate myDate::returnGregorian(int julian) {
 	const int month2 = month1 + 2 - 12 * temp14;
 	const int year2 = 100 * (temp21 - 49) + year1 + temp14;
 
-//	cout << month2 << " " << day1 << " " << year2<<endl;
 	return myDate(month2, day1, year2);
 }
