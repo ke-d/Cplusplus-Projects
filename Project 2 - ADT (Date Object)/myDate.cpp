@@ -70,12 +70,23 @@ void myDate::display() {
 }
 
 void myDate::incrDate(int N) {
+	int julian = getJulianDate() + N;
+	myDate newCalendar = returnGregorian(julian);
+	month = newCalendar.getMonth();
+	day = newCalendar.getDay();
+	year = newCalendar.getYear();
 }
 
 void myDate::decrDate(int N) {
+	int julian = getJulianDate() - N;
+	myDate newCalendar = returnGregorian(julian);
+	month = newCalendar.getMonth();
+	day = newCalendar.getDay();
+	year = newCalendar.getYear();
 }
 
 int myDate::daysBetween(myDate D) {
+	return D.getJulianDate() - getJulianDate();
 }
 
 int myDate::getMonth() const {

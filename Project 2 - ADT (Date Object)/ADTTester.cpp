@@ -11,11 +11,13 @@
 using namespace std;
 
 int main() {
-	myDate test(12,31,2000);
+	myDate test(1,1,2000);
+	test.display();
+	test.incrDate(40);
 	test.display();
 	cout<<endl;
 	cout << setprecision(8) << showpoint << fixed;
-	cout << "\n" <<test.getYearOffset()<<endl;
+//	cout << "\n" <<test.daysBetween(myDate(1,1,1999))<<endl;
 	return 0;
 }
 
