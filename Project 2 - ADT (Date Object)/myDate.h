@@ -12,6 +12,8 @@ class myDate {
 	int month;
 	int day;
 	int year;
+	void defaultDate();
+
 public:
 	myDate();
 	myDate(int M, int D, int Y);

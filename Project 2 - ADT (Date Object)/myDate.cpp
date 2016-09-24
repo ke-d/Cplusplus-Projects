@@ -13,6 +13,13 @@ using namespace std;
  * Default contructor
  */
 myDate::myDate() {
+	defaultDate();
+}
+
+/**
+ * Sets the default date
+ */
+void myDate::defaultDate() {
 	month = 5;
 	day = 11;
 	year = 1959;
@@ -22,14 +29,39 @@ myDate::myDate() {
  * Constructor that takes in the month, day, and year
  */
 myDate::myDate(int M, int D, int Y) {
-	if(M > 12 || M < 1 || D < 1 || D > 31) {
-		month = 5;
-		day = 11;
-		year = 1959;
+	if(M > 12 || M < 1 || D < 1) {
+		defaultDate();
 	} else {
 		month = M;
 		day = D;
 		year = Y;
+		switch(month) {
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:
+			if(D > 31) {
+				defaultDate();
+			}
+			break;
+		case 2:
+			if((Y % 4 == 0 && D > 29) || (Y % 4 != 0 && D > 28)) {
+				defaultDate();
+			}
+			break;
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			if(D > 30) {
+				defaultDate();
+			}
+			break;
+
+		}
 	}
 }
 
