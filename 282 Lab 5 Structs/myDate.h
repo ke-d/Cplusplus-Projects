@@ -18,6 +18,7 @@ public:
 	myDate();
 	myDate(int M, int D, int Y);
 	void display();
+	const char * toString();
 	void incrDate(int N);
 	void decrDate(int N);
 	int daysBetween(myDate D);

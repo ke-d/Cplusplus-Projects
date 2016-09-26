@@ -7,6 +7,8 @@
 #include "myDate.h"
 #include <iostream>
 #include <math.h>
+#include <stdio.h>
+#include <string.h>
 using namespace std;
 
 /**
@@ -191,4 +193,52 @@ myDate myDate::returnGregorian(int julian) {
 	const int year2 = 100 * (temp21 - 49) + year1 + temp14;
 
 	return myDate(month2, day1, year2);
+}
+
+const char* myDate::toString() {
+	char * cString;
+	switch(month) {
+	case 1:
+		strcpy(cString, "January");
+		break;
+	case 2:
+		strcpy(cString, "January");
+		break;
+	case 3:
+		strcpy(cString, "January");
+		break;
+	case 4:
+		strcpy(cString, "January");
+		break;
+	case 5:
+		strcpy(cString, "January");
+		break;
+	case 6:
+		strcpy(cString, "January");
+		break;
+	case 7:
+		strcpy(cString, "January");
+		break;
+	case 8:
+		strcpy(cString, "January");
+		break;
+	case 9:
+		strcpy(cString, "January");
+		break;
+	case 10:
+		strcpy(cString, "January");
+		break;
+	case 11:
+		strcpy(cString, "January");
+		break;
+	case 12:
+		strcpy(cString, "January");
+		break;
+	}
+	strcat(cString, " ");
+//	strcat(cString, str.Format("%d", day));
+	strcat(cString, ", ");
+//	strcat(cString, static_cast<char *>(year));
+	return cString;
+
 }
