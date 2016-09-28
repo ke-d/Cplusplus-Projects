@@ -4,9 +4,12 @@
  *  Created on: Sep 26, 2016
  *      Author: kdo70
  */
-#include "myDate.h"
-#include <iostream>
+
 #include <iomanip>
+#include <iostream>
+
+#include "myDate.h"
+
 using namespace std;
 struct Student {
 	int idNum;
@@ -15,32 +18,38 @@ struct Student {
 	int grade;
 };
 
-void setStudent(Student & student,int newID, char newName[], myDate newBirthdate, int newGrade) {
-	student.idNum = newID;
-	student.name = newName;
-	student.birthdate = newBirthdate;
-	student.grade = newGrade;
-}
-
-//void printArrayOfStudents(Student student[]) {
-//	for(int i < 0; i < sizeof(student);i++) {
-//
-//	}
-//}
-
-void printStudent(Student & student) {
-	cout << setw(10) << left << student.idNum <<
-	        setw(20) << student.name;
-	        setw(20) << student.birthdate.toString() <<
-	        setw(10) << student.grade << '\n';
-}
+void printStudent(Student & student);
+void printArrayOfStudents(Student student[],const int & size);
 
 int main() {
 	Student student[3];
-	setStudent(student[0], 123456789, "dsadsadas", myDate(2,3,1990), 80);
-	printStudent(student[0]);
+	student[0] = {1002, "Tom Thumb", myDate(1,1,1991), 56};
+	student[1] = {2987, "Fred Flintstone", myDate(2,3,1993), 78};
+	student[2] = {4765, "Sponge Bob", myDate(5,3,1992), 100};
+	printArrayOfStudents(student, 3);
 	return 0;
 }
 
+/**
+ * Print the student
+ */
+void printStudent(Student & student) {
+	cout << setw(20) << left << student.idNum <<
+	        setw(20) << student.name <<
+			setw(20) << student.birthdate.toString() <<
+			setw(20) << student.grade << '\n';
+}
 
+/**
+ * Print an array of students
+ */
+void printArrayOfStudents(Student student[], const int & size) {
+	cout << setw(20) << left << "Student ID" <<
+	        setw(20) << "Name" <<
+			setw(20) <<  "Birthday" <<
+			setw(20) << "Grade" << '\n';
+	for(int i = 0; i < size;i++) {
+		printStudent(student[i]);
+	}
+}
 

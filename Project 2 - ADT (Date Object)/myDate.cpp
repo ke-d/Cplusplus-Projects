@@ -5,10 +5,6 @@
  *      Author: Kenny Do
  */
 
-#include "myDate.h"
-#include <stdlib.h>
-#include <string.h>
-#include <iomanip>
 #include <iostream>
 
 using namespace std;
@@ -111,9 +107,8 @@ void myDate::display() {
 		cout << "December";
 		break;
 	}
-	cout << " " << day << ", " << year << setw(10);
+	cout << " " << day << ", " << year;
 }
-
 
 /**
  * Increment the date by N
@@ -198,58 +193,3 @@ myDate myDate::returnGregorian(int julian) {
 	return myDate(month2, day1, year2);
 }
 
-/**
- * Returns the display as a cstring
- */
-const char* myDate::toString() {
-	char * cString = new char[50];
-	switch(month) {
-	case 1:
-		strcpy(cString, "January");
-		break;
-	case 2:
-		strcpy(cString, "February");
-		break;
-	case 3:
-		strcpy(cString, "March");
-		break;
-	case 4:
-		strcpy(cString, "April");
-		break;
-	case 5:
-		strcpy(cString, "May");
-		break;
-	case 6:
-		strcpy(cString, "June");
-		break;
-	case 7:
-		strcpy(cString, "July");
-		break;
-	case 8:
-		strcpy(cString, "August");
-		break;
-	case 9:
-		strcpy(cString, "September");
-		break;
-	case 10:
-		strcpy(cString, "October");
-		break;
-	case 11:
-		strcpy(cString, "November");
-		break;
-	case 12:
-		strcpy(cString, "December");
-		break;
-	}
-	strcat(cString, " ");
-	char dateDay[20];
-	itoa (day,dateDay,10);
-	strcat(cString, dateDay);
-
-	strcat(cString, ", ");
-	char dateYear[200];
-	itoa (year,dateYear,10);
-	strcat(cString, dateYear);
-	return cString;
-
-}
