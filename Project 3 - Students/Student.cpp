@@ -47,6 +47,7 @@ int main() {
 	student[1] = {2987, "Fred Flintstone", myDate(2,3,1993), 78};
 	student[2] = {4765, "Sponge Bob", myDate(5,3,1992), 100};
 	printArrayOfStudents(student, 3);
+
 	return 0;
 }
 
