@@ -9,14 +9,10 @@
 #include <iostream>
 
 #include "myDate.h"
+#include "StudentStruct.h"
 
 using namespace std;
-struct Student {
-	int idNum;
-	char * name;
-	myDate birthdate;
-	int grade;
-};
+
 
 /**
  * Print the student
