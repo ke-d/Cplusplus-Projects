@@ -7,7 +7,7 @@
 
 #ifndef STUDENTSTRUCT_H_
 #define STUDENTSTRUCT_H_
-
+#include "myDate.h"
 struct Student {
 	int idNum;
 	char * name;

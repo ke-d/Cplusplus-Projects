@@ -9,11 +9,16 @@
 #include <iostream>
 using namespace std;
 
-enum color{RED,BLUE,GREEN};
+class Test {
+public:
+	static void fun() {
+		cout<<"test";
+	}
+};
 
 
 
 int main() {
-	cout << RED;
+	Test::fun();
 	return 0;
 }
