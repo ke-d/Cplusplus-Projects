@@ -42,7 +42,7 @@ int main() {
 	student[0] = {5002, "Tom Thumb", myDate(1,1,1991), 56};
 	student[1] = {3987, "Fred Flintstone", myDate(2,3,1993), 78};
 	student[2] = {4765, "Sponge Bob", myDate(5,3,1992), 100};
-	MergeSortStudents::mergeSort(student,0, 3,MergeSortStudents::studentIDCompare());
+	MergeSortStudents::mergeSort(student,0, 2,MergeSortStudents::compareByStudentID());
 	printArrayOfStudents(student, 3);
 
 	return 0;
