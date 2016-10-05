@@ -9,8 +9,10 @@
 #include <iostream>
 
 #include "myDate.h"
+#include "MergeSort.h"
+#include "StudentComparators.h"
 #include "StudentStruct.h"
-#include "MergeSortStudents.h"
+
 using namespace std;
 
 
@@ -41,8 +43,8 @@ int main() {
 	Student student[3];
 	student[0] = {5002, "Tom Thumb", myDate(1,1,1991), 56};
 	student[1] = {3987, "Fred Flintstone", myDate(2,3,1993), 78};
-	student[2] = {4765, "Sponge Bob", myDate(5,3,1992), 100};
-	MergeSortStudents::mergeSort(student,0, 2,MergeSortStudents::compareByStudentID());
+	student[2] = {4765, "Aponge Bob", myDate(5,3,1992), 100};
+	MergeSort::mergeSort(student, 3,StudentComparators::compareByStudentID());
 	printArrayOfStudents(student, 3);
 
 	return 0;
