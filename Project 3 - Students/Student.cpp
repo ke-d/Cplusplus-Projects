@@ -7,6 +7,8 @@
 
 #include <iomanip>
 #include <iostream>
+#include <cstdlib>
+#include <time.h>
 
 #include "myDate.h"
 #include "MergeSort.h"
@@ -62,14 +64,17 @@ void printArrayOfStudents(Student student[], const int & size) {
 	}
 }
 
+void generateStudents(Student student[], int size) {
+	for(int i = 0; i < size; i++) {
+		student[i] = {rand() % 8999 + 1000, "Tom", myDate::getRandomDayBetween(myDate(1,1,1990), myDate(12,31,1994)), rand() % 50 + 50};
+	}
+}
+
 int main() {
-	const int size = 5;
+	srand(time(NULL));
+	const int size = 10;
 	Student student[size];
-	student[0] = {5002, "Tom Thumb", myDate(1,1,1991), 56};
-	student[1] = {3987, "Fred Flintstone", myDate(2,3,1993), 78};
-	student[2] = {4765, "Aponge Bob", myDate(5,3,1992), 100};
-	student[3] = {1234, "Clone", myDate(5,3,1950), 75};
-	student[4] = {4321, "Clone2", myDate(2,1,1950), 60};
+	generateStudents(student, size);
 
 	Student stuID[size];
 	Student stuAge[size];

@@ -10,6 +10,8 @@
 #include <string.h>
 #include <iomanip>
 #include <iostream>
+#include <cstdlib>
+#include <time.h>
 
 using namespace std;
 
@@ -318,4 +320,14 @@ bool myDate::operator !=(const myDate& date) {
 	} else {
 		return false;
 	}
+}
+
+/**
+ * Returns a day between d1 and d2
+ */
+myDate myDate::getRandomDayBetween(myDate d1, myDate d2) {
+	int d1Julian = d1.getJulianDate();
+	int d2Julian = d2.getJulianDate();
+	int randJulian = rand() % (d2Julian - d1Julian) + d1Julian;
+	return returnGregorian(randJulian);
 }

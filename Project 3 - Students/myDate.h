@@ -91,6 +91,11 @@ public:
 	static myDate returnGregorian(int julian);
 
 	/**
+	 * Returns a day between d1 and d2
+	 */
+	static myDate getRandomDayBetween(myDate d1, myDate d2);
+
+	/**
 	 * Returns the display as a cstring
 	 */
 	const char * toString();
