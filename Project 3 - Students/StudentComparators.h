@@ -23,7 +23,7 @@ class StudentComparators {
 
 	class CompareStudentAge: public ComparatorInterface<Student> {
 		int compare(Student stu1, Student stu2) {
-			return stu2.birthdate.daysBetween(myDate(1,1,2016)) - stu1.birthdate.daysBetween(myDate(1,1,2016));
+			return stu1.birthdate.daysBetween(myDate(1,1,2016)) - stu2.birthdate.daysBetween(myDate(1,1,2016));
 		}
 	};
 

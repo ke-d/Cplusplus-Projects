@@ -40,12 +40,23 @@ void printArrayOfStudents(Student student[], const int & size) {
 }
 
 int main() {
-	Student student[3];
+	const int size = 5;
+	Student student[size];
 	student[0] = {5002, "Tom Thumb", myDate(1,1,1991), 56};
 	student[1] = {3987, "Fred Flintstone", myDate(2,3,1993), 78};
 	student[2] = {4765, "Aponge Bob", myDate(5,3,1992), 100};
-	MergeSort::mergeSort(student, 3,StudentComparators::compareByStudentID());
-	printArrayOfStudents(student, 3);
+	student[3] = {1234, "Clone", myDate(5,3,1950), 75};
+	student[4] = {4321, "Clone2", myDate(2,1,1950), 60};
+	Student * stupt[4];
+	Student result[size];
+	copy(student, student + size, result);
+	stupt[0] = result;
+//	stupt[1] = &student[1];
+//	stupt[2] = &student[2];
+//	stupt[3] = &student[3];
+	MergeSort::mergeSort(stupt[0], size,StudentComparators::compareByStudentID());
+	printArrayOfStudents(student, size);
+	printArrayOfStudents(stupt[0], size);
 
 	return 0;
 }

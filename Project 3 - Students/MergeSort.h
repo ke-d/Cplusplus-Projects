@@ -17,7 +17,7 @@ public:
 
 private:
 	template<typename T>
-	static void merge(T arr[], int l, int m, int r,
+	static void merge(T arr[], int left, int middle, int right,
 			ComparatorInterface<T> * comp);
 	template<typename T>
 	static void mergeSort(T arr[], int l, int r, ComparatorInterface<T> * comp);
@@ -44,40 +44,41 @@ inline void MergeSort::mergeSort(T arr[], int l, int r,
 }
 
 template<typename T>
-inline void MergeSort::merge(T arr[], int l, int m, int r,
+inline void MergeSort::merge(T arr[], int left, int middle, int right,
 		ComparatorInterface<T>* comp) {
 	int i, j, k;
-	int n1 = m - l + 1;
-	int n2 = r - m;
+	int sizeLeft = middle - left + 1;
+	int sizeRight = right - middle;
 
-	T L[n1], R[n2];
+	T L[sizeLeft], R[sizeRight];
 
-	for (i = 0; i < n1; i++)
-		L[i] = arr[l + i];
-	for (j = 0; j < n2; j++)
-		R[j] = arr[m + 1 + j];
+	for (i = 0; i < sizeLeft; i++)
+		L[i] = arr[left + i];
+	for (j = 0; j < sizeRight; j++)
+		R[j] = arr[middle + 1 + j];
 
 	i = 0;
 	j = 0;
-	k = l;
-	while (i < n1 && j < n2) {
+	k = left;
+	while (i < sizeLeft && j < sizeRight) {
 		if (comp->compare(L[i], R[j]) <= 0) {
 			arr[k] = L[i];
 			i++;
 		} else {
 			arr[k] = R[j];
+
 			j++;
 		}
 		k++;
 	}
 
-	while (i < n1) {
+	while (i < sizeLeft) {
 		arr[k] = L[i];
 		i++;
 		k++;
 	}
 
-	while (j < n2) {
+	while (j < sizeRight) {
 		arr[k] = R[j];
 		j++;
 		k++;
