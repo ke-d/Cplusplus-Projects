@@ -15,7 +15,30 @@
 
 using namespace std;
 
-
+int menu() {
+	cout << "1) Display original list" <<endl;
+	cout << "2) Display list sorted by Student ID" <<endl;
+	cout << "3) Display list sorted by Student Age" <<endl;
+	cout << "4) Display list sorted by Student Name" <<endl;
+	cout << "5) Display list sorted by Student Grade" <<endl;
+	cout << "6) Exit" <<endl;
+	char choice;
+	choice = cin.get();
+	cin.ignore(256, '\n');
+	choice -= 48;
+	while((int) choice < 1 || (int) choice > 6 ) {
+		//Ï = 139 in char
+		if(choice = 139) {
+			//Terminates cleanly
+			return 6;
+		}
+		cout << "Please pick a valid choice." <<endl;
+		choice = cin.get();
+		choice -= 48;
+		cin.ignore(256, '\n');
+	}
+	return choice;
+}
 /**
  * Print the student
  */
@@ -66,11 +89,30 @@ int main() {
 	MergeSort::mergeSort(stupt[1], size,StudentComparators::compareByStudentAge());
 	MergeSort::mergeSort(stupt[2], size,StudentComparators::compareByStudentName());
 	MergeSort::mergeSort(stupt[3], size,StudentComparators::compareByStudentGrade());
-	printArrayOfStudents(student, size);
-	printArrayOfStudents(stupt[0], size);
-	printArrayOfStudents(stupt[1], size);
-	printArrayOfStudents(stupt[2], size);
-	printArrayOfStudents(stupt[3], size);
+
+	int choice = menu();
+	while(choice != 6) {
+		switch(choice) {
+		case 1:
+			printArrayOfStudents(student, size);
+			break;
+		case 2:
+			printArrayOfStudents(stupt[0], size);
+			break;
+		case 3:
+			printArrayOfStudents(stupt[1], size);
+			break;
+		case 4:
+			printArrayOfStudents(stupt[2], size);
+			break;
+		case 5:
+			printArrayOfStudents(stupt[3], size);
+			break;
+		}
+		cout << endl;
+		choice = menu();
+
+	}
 
 	return 0;
 }
