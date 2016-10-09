@@ -9,6 +9,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
+#include <fstream>
+#include <string.h>
 
 #include "myDate.h"
 #include "MergeSort.h"
@@ -17,6 +19,20 @@
 
 using namespace std;
 
+char* readName() {
+	fstream infile("names.txt");
+	char cName[256];
+	int random = rand() % 100 + 1;
+	int lineNumber = 0;
+	while(infile.getline(cName, 256)) {
+		++lineNumber;
+		if(lineNumber == random) {
+			break;
+		}
+	}
+	infile.close();
+	return strdup(cName);
+}
 int menu() {
 	cout << "1) Display original list" <<endl;
 	cout << "2) Display list sorted by Student ID" <<endl;
@@ -66,13 +82,14 @@ void printArrayOfStudents(Student student[], const int & size) {
 
 void generateStudents(Student student[], int size) {
 	for(int i = 0; i < size; i++) {
-		student[i] = {rand() % 8999 + 1000, "Tom", myDate::getRandomDayBetween(myDate(1,1,1990), myDate(12,31,1994)), rand() % 50 + 50};
+		student[i] = {rand() % 8999 + 1000, readName(), myDate::getRandomDayBetween(myDate(1,1,1990), myDate(12,31,1994)), rand() % 50 + 50};
 	}
 }
 
 int main() {
 	srand(time(NULL));
 	const int size = 10;
+
 	Student student[size];
 	generateStudents(student, size);
 
@@ -94,7 +111,6 @@ int main() {
 	MergeSort::mergeSort(stupt[1], size,StudentComparators::compareByStudentAge());
 	MergeSort::mergeSort(stupt[2], size,StudentComparators::compareByStudentName());
 	MergeSort::mergeSort(stupt[3], size,StudentComparators::compareByStudentGrade());
-
 	int choice = menu();
 	while(choice != 6) {
 		switch(choice) {
@@ -116,9 +132,7 @@ int main() {
 		}
 		cout << endl;
 		choice = menu();
-
 	}
-
 	return 0;
 }
 
