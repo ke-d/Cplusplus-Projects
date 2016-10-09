@@ -14,13 +14,32 @@ class MergeSort {
 public:
 	template<typename T>
 	static void mergeSort(T arr[], int size, ComparatorInterface<T> * comp);
+	/**
+	 * Precondition:
+	 * 		size is greater than 0
+	 * Postcondition:
+	 * 		Calls the helper method mergeSort
+	 */
 
 private:
 	template<typename T>
 	static void merge(T arr[], int left, int middle, int right,
 			ComparatorInterface<T> * comp);
+	/**
+	 * Precondition:
+	 * 		none
+	 * Postcondition:
+	 * 		merges the arrays in sorted form
+	 */
+
 	template<typename T>
 	static void mergeSort(T arr[], int l, int r, ComparatorInterface<T> * comp);
+	/**
+	 * Precondition:
+	 * 		l < r
+	 * Postcondition:
+	 * 		T arr[] is sorted by the specification of the ComparatorInterface
+	 */
 };
 
 template<typename T>

@@ -19,6 +19,9 @@
 
 using namespace std;
 
+/**
+ * Returns a random name from names.txt
+ */
 char* readName() {
 	fstream infile("names.txt");
 	char cName[256];
@@ -33,6 +36,10 @@ char* readName() {
 	infile.close();
 	return strdup(cName);
 }
+
+/**
+ * Menu for the selecting which sort to be displayed
+ */
 int menu() {
 	cout << "1) Display original list" <<endl;
 	cout << "2) Display list sorted by Student ID" <<endl;
@@ -80,6 +87,9 @@ void printArrayOfStudents(Student student[], const int & size) {
 	}
 }
 
+/**
+ * Generate a list of students up to the size
+ */
 void generateStudents(Student student[], int size) {
 	for(int i = 0; i < size; i++) {
 		student[i] = {rand() % 8999 + 1000, readName(), myDate::getRandomDayBetween(myDate(1,1,1990), myDate(12,31,1994)), rand() % 50 + 50};
