@@ -2,7 +2,7 @@
  * Student.cpp
  *
  *  Created on: Sep 26, 2016
- *      Author: kdo70
+ *      Author: Kenny Do
  */
 
 #include <iomanip>
