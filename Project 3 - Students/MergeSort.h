@@ -33,7 +33,7 @@ private:
 	 */
 
 	template<typename T>
-	static void mergeSort(T arr[], int l, int r, ComparatorInterface<T> * comp);
+	static void mergeSort(T arr[], int left, int right, ComparatorInterface<T> * comp);
 	/**
 	 * Precondition:
 	 * 		l < r
@@ -49,16 +49,16 @@ inline void MergeSort::mergeSort(T arr[], int size,
 }
 
 template<typename T>
-inline void MergeSort::mergeSort(T arr[], int l, int r,
+inline void MergeSort::mergeSort(T arr[], int left, int right,
 		ComparatorInterface<T>* comp) {
-	if (l < r) {
+	if (left < right) {
 
-		int m = l + (r - l) / 2;
+		int m = left + (right - left) / 2;
 
-		mergeSort(arr, l, m, comp);
-		mergeSort(arr, m + 1, r, comp);
+		mergeSort(arr, left, m, comp);
+		mergeSort(arr, m + 1, right, comp);
 
-		merge(arr, l, m, r, comp);
+		merge(arr, left, m, right, comp);
 	}
 }
 
