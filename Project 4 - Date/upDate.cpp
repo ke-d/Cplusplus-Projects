@@ -6,12 +6,6 @@
  */
 
 #include "upDate.h"
-#include <stdlib.h>
-#include <string.h>
-#include <iomanip>
-#include <iostream>
-#include <cstdlib>
-#include <time.h>
 
 using namespace std;
 
@@ -19,26 +13,46 @@ using namespace std;
  * Default contructor
  */
 upDate::upDate() {
+	iptr = new int[3];
 	defaultDate();
 }
 
 /**
+ * Constructor that takes in the month, day, and year
+ */
+upDate::upDate(int M, int D, int Y) {
+	iptr = new int[3];
+	setDate(M, D, Y);
+}
+
+upDate::upDate(const upDate& date) {
+	iptr = new int[3];
+	iptr[0] = date.getMonth();
+	iptr[1] = date.getDay();
+	iptr[2] = date.getYear();
+}
+
+upDate::~upDate() {
+	delete[] iptr;
+//	iptr = nullptr;
+}
+/**
  * Sets the default date
  */
 void upDate::defaultDate() {
-	month = 5;
-	day = 11;
-	year = 1959;
+	iptr[0] = 5;
+	iptr[1] = 11;
+	iptr[2] = 1959;
 }
 
 void upDate::setDate(int M, int D, int Y) {
-	if (M > 12 || M < 1 || D < 1) {
+	if(M > 12 || M < 1 || D < 1) {
 		defaultDate();
 	} else {
-		month = M;
-		day = D;
-		year = Y;
-		switch (month) {
+		iptr[0] = M;
+		iptr[1] = D;
+		iptr[2] = Y;
+		switch(iptr[0]) {
 		case 1:
 		case 3:
 		case 5:
@@ -46,12 +60,12 @@ void upDate::setDate(int M, int D, int Y) {
 		case 8:
 		case 10:
 		case 12:
-			if (D > 31) {
+			if(D > 31) {
 				defaultDate();
 			}
 			break;
 		case 2:
-			if ((Y % 4 == 0 && D > 29) || (Y % 4 != 0 && D > 28)) {
+			if((Y % 4 == 0 && D > 29) || (Y % 4 != 0 && D > 28)) {
 				defaultDate();
 			}
 			break;
@@ -59,130 +73,100 @@ void upDate::setDate(int M, int D, int Y) {
 		case 6:
 		case 9:
 		case 11:
-			if (D > 30) {
+			if(D > 30) {
 				defaultDate();
 			}
 			break;
+
 		}
 	}
+
 }
 
-/**
- * Constructor that takes in the month, day, and year
- */
-upDate::upDate(int M, int D, int Y) {
-	setDate(M, D, Y);
-}
-
-/**
- * Displays the date
- */
-void upDate::display() {
-	switch(month) {
-	case 1:
-		cout << "January";
-		break;
-	case 2:
-		cout << "February";
-		break;
-	case 3:
-		cout << "March";
-		break;
-	case 4:
-		cout << "April";
-		break;
-	case 5:
-		cout << "May";
-		break;
-	case 6:
-		cout << "June";
-		break;
-	case 7:
-		cout << "July";
-		break;
-	case 8:
-		cout << "August";
-		break;
-	case 9:
-		cout << "September";
-		break;
-	case 10:
-		cout << "October";
-		break;
-	case 11:
-		cout << "November";
-		break;
-	case 12:
-		cout << "December";
-		break;
-	}
-	cout << " " << day << ", " << year << setw(10);
-}
-
-
-/**
- * Increment the date by N
- */
-void upDate::incrDate(int N) {
-	int julian = getJulianDate() + N;
-	upDate newCalendar = returnGregorian(julian);
-	month = newCalendar.getMonth();
-	day = newCalendar.getDay();
-	year = newCalendar.getYear();
-}
-
-/**
- * Decrement the date by N
- */
-void upDate::decrDate(int N) {
-	int julian = getJulianDate() - N;
-	upDate newCalendar = returnGregorian(julian);
-	month = newCalendar.getMonth();
-	day = newCalendar.getDay();
-	year = newCalendar.getYear();
-}
 
 /**
  * Calculates the days between D and this date
  */
 int upDate::daysBetween(upDate D) {
-	return D.getJulianDate() - getJulianDate();
+	return D.julian() - julian();
 }
 
 /**
  * Returns the month
  */
 int upDate::getMonth() const {
-	return month;
+	return iptr[0];
+}
+
+std::string upDate::getMonthName() {
+	switch(iptr[0]) {
+	case 1:
+		return "January";
+		break;
+	case 2:
+		return "February";
+		break;
+	case 3:
+		return "March";
+		break;
+	case 4:
+		return "April";
+		break;
+	case 5:
+		return "May";
+		break;
+	case 6:
+		return "June";
+		break;
+	case 7:
+		return "July";
+		break;
+	case 8:
+		return "August";
+		break;
+	case 9:
+		return "September";
+		break;
+	case 10:
+		return "October";
+		break;
+	case 11:
+		return "November";
+		break;
+	case 12:
+		return "December";
+		break;
+	}
+	return "";
 }
 
 /**
  * Returns the day
  */
 int upDate::getDay() const {
-	return day;
+	return iptr[1];
 }
 
 /**
  * Returns the year
  */
 int upDate::getYear() const {
-	return year;
+	return iptr[2];
 }
 
 /**
  * Returns the days between this date and the start of the year
  */
 int upDate::getYearOffset() const {
-	upDate start(1, 1, year);
-	return getJulianDate() - start.getJulianDate();
+	upDate start(1, 1, iptr[2]);
+	return julian() - start.julian();
 }
 
 /**
  * Returns the Julian number of this date
  */
-double upDate::getJulianDate() const {
-	return day - 32075 + 1461 * (year + 4800 + (month - 14) / 12) / 4 +367 * (month - 2 - (month - 14) / 12 * 12) /12 - 3 * ((year +4900 + (month - 14) / 12) / 100) / 4;
+double upDate::julian() const {
+	return iptr[1] - 32075 + 1461 * (iptr[2] + 4800 + (iptr[0] - 14) / 12) / 4 +367 * (iptr[0] - 2 - (iptr[0] - 14) / 12 * 12) /12 - 3 * ((iptr[2] +4900 + (iptr[0] - 14) / 12) / 100) / 4;
 }
 
 /**
@@ -203,60 +187,65 @@ upDate upDate::returnGregorian(int julian) {
 	return upDate(month2, day1, year2);
 }
 
+std::ostream& operator<<(std::ostream& os, const upDate& date) {
+	os << date.iptr[0] <<"/" << date.iptr[1]<<"/"<<date.iptr[2];
+	return os;
+}
+
+
 /**
- * Returns the display as a cstring
+ * Increment the date by N
  */
-const char* upDate::toString() {
-	char * cString = new char[50];
-	switch(month) {
-	case 1:
-		strcpy(cString, "January");
-		break;
-	case 2:
-		strcpy(cString, "February");
-		break;
-	case 3:
-		strcpy(cString, "March");
-		break;
-	case 4:
-		strcpy(cString, "April");
-		break;
-	case 5:
-		strcpy(cString, "May");
-		break;
-	case 6:
-		strcpy(cString, "June");
-		break;
-	case 7:
-		strcpy(cString, "July");
-		break;
-	case 8:
-		strcpy(cString, "August");
-		break;
-	case 9:
-		strcpy(cString, "September");
-		break;
-	case 10:
-		strcpy(cString, "October");
-		break;
-	case 11:
-		strcpy(cString, "November");
-		break;
-	case 12:
-		strcpy(cString, "December");
-		break;
-	}
-	strcat(cString, " ");
-	char dateDay[20];
-	itoa (day,dateDay,10);
-	strcat(cString, dateDay);
+upDate upDate::operator +(int N) {
+	int jul = julian() + N;
+	upDate newCalendar = returnGregorian(jul);
+	return upDate(newCalendar.getMonth(), newCalendar.getDay(), newCalendar.getYear());
+}
 
-	strcat(cString, ", ");
-	char dateYear[200];
-	itoa (year,dateYear,10);
-	strcat(cString, dateYear);
-	return cString;
 
+upDate& upDate::operator ++() {
+	int jul = this->julian() + 1;
+	this = this->returnGregorian(jul);
+	return *this;
+}
+
+upDate upDate::operator ++(int int1) {
+	upDate temp = *this;
+	++*this;
+	return temp;
+}
+
+upDate& upDate::operator --() {
+	int jul = this->julian() - 1;
+	this = this->returnGregorian(jul);
+	return *this;
+}
+
+upDate upDate::operator --(int int1) {
+	upDate temp = *this;
+	++*this;
+	return temp;
+}
+
+upDate operator +(int N,const upDate& date) {
+	int jul = date.julian() + N;
+	upDate newCalendar = date.returnGregorian(jul);
+	return upDate(newCalendar.getMonth(), newCalendar.getDay(), newCalendar.getYear());
+}
+
+/**
+ * Decrement the date by N
+ */
+upDate upDate::operator -(int N) {
+	int jul = julian() - N;
+	upDate newCalendar = returnGregorian(jul);
+	return upDate(newCalendar.getMonth(), newCalendar.getDay(), newCalendar.getYear());
+}
+
+
+
+int upDate::operator -(const upDate& date) {
+	return this->julian() - date.julian();
 }
 
 /**
@@ -325,12 +314,3 @@ bool upDate::operator !=(const upDate& date) {
 	}
 }
 
-/**
- * Returns a day between d1 and d2
- */
-upDate upDate::getRandomDayBetween(upDate d1, upDate d2) {
-	int d1Julian = d1.getJulianDate();
-	int d2Julian = d2.getJulianDate();
-	int randJulian = rand() % (d2Julian - d1Julian) + d1Julian;
-	return returnGregorian(randJulian);
-}

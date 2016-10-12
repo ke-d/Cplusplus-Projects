@@ -8,25 +8,13 @@
 #ifndef UPDATE_H_
 #define UPDATE_H_
 
+#include <iostream>
+#include <string>
+
 class upDate {
-	/**
-	 * Stores the date
-	 */
-	int month;
+	int * iptr;
 
-	/**
-	 * Stores the day
-	 */
-	int day;
 
-	/**
-	 * Stores the year
-	 */
-	int year;
-
-	/**
-	 * Sets the default date
-	 */
 	void defaultDate();
 
 
@@ -41,20 +29,9 @@ public:
 	 */
 	upDate(int M, int D, int Y);
 
-	/**
-	 * Displays the date
-	 */
-	void display();
+	upDate(const upDate& date);
 
-	/**
-	 * Increment the date by N
-	 */
-	void incrDate(int N);
-
-	/**
-	 * Decrement the date by N
-	 */
-	void decrDate(int N);
+	~upDate();
 
 	/**
 	 * Calculates the days between D and this date
@@ -76,6 +53,8 @@ public:
 	 */
 	int getYear() const;
 
+	std::string getMonthName();
+
 	/**
 	 * Returns the days between this date and the start of the year
 	 */
@@ -86,22 +65,40 @@ public:
 	/**
 	 * Returns the Julian number of this date
 	 */
-	double getJulianDate() const;
+	double julian() const;
 
 	/**
 	 * Returns a upDate object that is calculated from the julian number
 	 */
 	static upDate returnGregorian(int julian);
 
-	/**
-	 * Returns a day between d1 and d2
-	 */
-	static upDate getRandomDayBetween(upDate d1, upDate d2);
+
+
+    friend std::ostream& operator<<(std::ostream& os, const upDate& date);
+
+
+	friend upDate operator +(int N,const upDate& date);
+
+
+	upDate& operator ++();
+
+	upDate operator ++(int);
+
+	upDate& operator --();
+
+	upDate operator --(int);
 
 	/**
-	 * Returns the display as a cstring
+	 * Increment the date by N
 	 */
-	const char * toString();
+	upDate operator +(int N);
+
+	/**
+	 * Decrement the date by N
+	 */
+	upDate operator -(int N);
+
+	int operator -(const upDate& date);
 
 	/**
 	 * Overload the greater than
