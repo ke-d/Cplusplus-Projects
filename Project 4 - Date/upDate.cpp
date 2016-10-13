@@ -187,6 +187,20 @@ upDate upDate::returnGregorian(int julian) {
 	return upDate(month2, day1, year2);
 }
 
+void upDate::updateFromGregorian(int julian) {
+	const int temp11 = julian + 68569;
+	const int temp21 = 4 * temp11 / 146097;
+	const int temp12 = temp11 - (146097 * temp21 + 3) / 4;
+	const int year1 = 4000 * (temp12 + 1) / 1461001;
+	const int temp13 = temp12 - (1461 * year1 / 4) + 31;
+	const int month1 = 80 * temp13 / 2447;
+	const int day1 = temp13 - (2447 * month1 / 80);
+	const int temp14 = month1 / 11;
+	const int month2 = month1 + 2 - 12 * temp14;
+	const int year2 = 100 * (temp21 - 49) + year1 + temp14;
+	setDate(month2,day1,year2);
+}
+
 std::ostream& operator<<(std::ostream& os, const upDate& date) {
 	os << date.iptr[0] <<"/" << date.iptr[1]<<"/"<<date.iptr[2];
 	return os;
@@ -205,7 +219,7 @@ upDate upDate::operator +(int N) {
 
 upDate& upDate::operator ++() {
 	int jul = this->julian() + 1;
-	this = this->returnGregorian(jul);
+	updateFromGregorian(jul);
 	return *this;
 }
 
@@ -217,13 +231,13 @@ upDate upDate::operator ++(int int1) {
 
 upDate& upDate::operator --() {
 	int jul = this->julian() - 1;
-	this = this->returnGregorian(jul);
+	updateFromGregorian(jul);
 	return *this;
 }
 
 upDate upDate::operator --(int int1) {
 	upDate temp = *this;
-	++*this;
+	--*this;
 	return temp;
 }
 

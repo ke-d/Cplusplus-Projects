@@ -9,15 +9,13 @@
 using namespace std;
 
 int main() {
-	upDate testDate(2,2,2014);
+	upDate testDate(2,1,2014);
 	upDate testDate2(testDate);
-	upDate d1 = 1 + testDate;
-	upDate d2 = testDate2 + 4;
-	d1++;
-	int diff = d2 - d1;
-	cout << d1<<endl;
-	cout << d2<<endl;
-	cout << diff <<endl;
+	++testDate;
+	--testDate2;
+	cout << testDate<<endl;
+	cout << testDate2<<endl;
+	cout << (testDate <= testDate2);
 	return 0;
 }
 

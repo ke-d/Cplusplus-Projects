@@ -72,7 +72,7 @@ public:
 	 */
 	static upDate returnGregorian(int julian);
 
-
+	void updateFromGregorian(int julian);
 
     friend std::ostream& operator<<(std::ostream& os, const upDate& date);
 
