@@ -173,32 +173,35 @@ double upDate::julian() const {
  * Returns a upDate object that is calculated from the julian number
  */
 upDate upDate::returnGregorian(int julian) {
-	const int temp11 = julian + 68569;
-	const int temp21 = 4 * temp11 / 146097;
-	const int temp12 = temp11 - (146097 * temp21 + 3) / 4;
-	const int year1 = 4000 * (temp12 + 1) / 1461001;
-	const int temp13 = temp12 - (1461 * year1 / 4) + 31;
-	const int month1 = 80 * temp13 / 2447;
-	const int day1 = temp13 - (2447 * month1 / 80);
-	const int temp14 = month1 / 11;
-	const int month2 = month1 + 2 - 12 * temp14;
-	const int year2 = 100 * (temp21 - 49) + year1 + temp14;
+	int year, month, day;
+	int L = julian + 68569;
+	int N = 4 * L / 146097;
+	L = L - (146097 * N + 3) / 4;
+	year = 4000 * (L + 1) / 1461001;
+	L = L - 1461 * year / 4 + 31;
+	month = 80 * L / 2447;
+	day = L - 2447 * month / 80;
+	L = month / 11;
+	month = month + 2 - 12 * L;
+	year = 100 * (N - 49) + year + L;
 
-	return upDate(month2, day1, year2);
+	return upDate(month, day, year);
 }
 
 void upDate::updateFromGregorian(int julian) {
-	const int temp11 = julian + 68569;
-	const int temp21 = 4 * temp11 / 146097;
-	const int temp12 = temp11 - (146097 * temp21 + 3) / 4;
-	const int year1 = 4000 * (temp12 + 1) / 1461001;
-	const int temp13 = temp12 - (1461 * year1 / 4) + 31;
-	const int month1 = 80 * temp13 / 2447;
-	const int day1 = temp13 - (2447 * month1 / 80);
-	const int temp14 = month1 / 11;
-	const int month2 = month1 + 2 - 12 * temp14;
-	const int year2 = 100 * (temp21 - 49) + year1 + temp14;
-	setDate(month2,day1,year2);
+	int year, month, day;
+	int L = julian + 68569;
+	int N = 4 * L / 146097;
+	L = L - (146097 * N + 3) / 4;
+	year = 4000 * (L + 1) / 1461001;
+	L = L - 1461 * year / 4 + 31;
+	month = 80 * L / 2447;
+	day = L - 2447 * month / 80;
+	L = month / 11;
+	month = month + 2 - 12 * L;
+	year = 100 * (N - 49) + year + L;
+
+	setDate(month, day, year);
 }
 
 std::ostream& operator<<(std::ostream& os, const upDate& date) {
