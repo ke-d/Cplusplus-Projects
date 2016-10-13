@@ -9,11 +9,13 @@
 
 using namespace std;
 
+int upDate::numOfDateObjects = 0;
 /**
- * Default contructor
+ * Default constructor
  */
 upDate::upDate() {
 	iptr = new int[3];
+	++numOfDateObjects;
 	defaultDate();
 }
 
@@ -22,11 +24,13 @@ upDate::upDate() {
  */
 upDate::upDate(int M, int D, int Y) {
 	iptr = new int[3];
+	++numOfDateObjects;
 	setDate(M, D, Y);
 }
 
 upDate::upDate(const upDate& date) {
 	iptr = new int[3];
+	++numOfDateObjects;
 	iptr[0] = date.getMonth();
 	iptr[1] = date.getDay();
 	iptr[2] = date.getYear();
@@ -34,6 +38,7 @@ upDate::upDate(const upDate& date) {
 
 upDate::~upDate() {
 	delete[] iptr;
+	numOfDateObjects--;
 //	iptr = nullptr;
 }
 /**
@@ -46,39 +51,17 @@ void upDate::defaultDate() {
 }
 
 void upDate::setDate(int M, int D, int Y) {
-	if(M > 12 || M < 1 || D < 1) {
-		defaultDate();
-	} else {
+	iptr[0] = M;
+	iptr[1] = D;
+	iptr[2] = Y;
+	int julianFromConstructor = julian();
+	updateFromGregorian(julianFromConstructor);
+	if(M == iptr[0] && D == iptr[1] && Y == iptr[2] ) {
 		iptr[0] = M;
 		iptr[1] = D;
 		iptr[2] = Y;
-		switch(iptr[0]) {
-		case 1:
-		case 3:
-		case 5:
-		case 7:
-		case 8:
-		case 10:
-		case 12:
-			if(D > 31) {
-				defaultDate();
-			}
-			break;
-		case 2:
-			if((Y % 4 == 0 && D > 29) || (Y % 4 != 0 && D > 28)) {
-				defaultDate();
-			}
-			break;
-		case 4:
-		case 6:
-		case 9:
-		case 11:
-			if(D > 30) {
-				defaultDate();
-			}
-			break;
-
-		}
+	} else {
+		defaultDate();
 	}
 
 }
@@ -154,6 +137,10 @@ int upDate::getYear() const {
 	return iptr[2];
 }
 
+int upDate::GetDateCount() {
+	return numOfDateObjects;
+}
+
 /**
  * Returns the days between this date and the start of the year
  */
@@ -201,7 +188,9 @@ void upDate::updateFromGregorian(int julian) {
 	month = month + 2 - 12 * L;
 	year = 100 * (N - 49) + year + L;
 
-	setDate(month, day, year);
+	iptr[0] = month;
+	iptr[1] = day;
+	iptr[2] = year;
 }
 
 std::ostream& operator<<(std::ostream& os, const upDate& date) {
@@ -258,7 +247,6 @@ upDate upDate::operator -(int N) {
 	upDate newCalendar = returnGregorian(jul);
 	return upDate(newCalendar.getMonth(), newCalendar.getDay(), newCalendar.getYear());
 }
-
 
 
 int upDate::operator -(const upDate& date) {

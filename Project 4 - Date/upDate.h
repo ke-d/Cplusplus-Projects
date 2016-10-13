@@ -12,11 +12,12 @@
 #include <string>
 
 class upDate {
+	static int numOfDateObjects;
 	int * iptr;
 
+	void updateFromGregorian(int julian);
 
 	void defaultDate();
-
 
 public:
 	/**
@@ -53,7 +54,10 @@ public:
 	 */
 	int getYear() const;
 
+	static int GetDateCount();
+
 	std::string getMonthName();
+
 
 	/**
 	 * Returns the days between this date and the start of the year
@@ -71,8 +75,6 @@ public:
 	 * Returns a upDate object that is calculated from the julian number
 	 */
 	static upDate returnGregorian(int julian);
-
-	void updateFromGregorian(int julian);
 
     friend std::ostream& operator<<(std::ostream& os, const upDate& date);
 
@@ -129,6 +131,7 @@ public:
 	 * Overload the not equals
 	 */
 	bool operator !=(const upDate & date);
+
 };
 
 

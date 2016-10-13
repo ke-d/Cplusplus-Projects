@@ -9,13 +9,13 @@
 using namespace std;
 
 int main() {
-	upDate testDate(2,1,2014);
+	upDate testDate(1,1,2015);
 	upDate testDate2(testDate);
 	++testDate;
 	--testDate2;
 	cout << testDate<<endl;
 	cout << testDate2<<endl;
-	cout << (testDate <= testDate2);
+	cout << testDate.julian();
 	return 0;
 }
 
