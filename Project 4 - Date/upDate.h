@@ -12,123 +12,254 @@
 #include <string>
 
 class upDate {
+	/**
+	 * Stores the amount of date objects
+	 */
 	static int numOfDateObjects;
+
+	/**
+	 * A pointer to an array of int
+	 */
 	int * iptr;
 
+	/**
+	 * Precondition:
+	 * 		julian is positive
+	 * Postcondition:
+	 * 		Set the date of this upDate object with julian
+	 */
 	void updateFromGregorian(int julian);
 
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Sets the date to May 11, 1959
+	 */
 	void defaultDate();
 
 public:
 	/**
-	 * Default contructor
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Creates a upDate with the default
 	 */
 	upDate();
 
 	/**
-	 * Constructor that takes in the month, day, and year
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Creates a upDate with M, D, Y
 	 */
 	upDate(int M, int D, int Y);
 
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Creates a clone of date
+	 */
 	upDate(const upDate& date);
 
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Destructor for update
+	 */
 	~upDate();
 
 	/**
-	 * Calculates the days between D and this date
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Sets the date to M, D, Y for month, day, year respectively
+	 */
+	void setDate(int M, int D, int Y);
+
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Calculates the days between D and this date
 	 */
 	int daysBetween(upDate D);
 
 	/**
-	 * Returns the month
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Returns the month
 	 */
 	int getMonth() const;
 
 	/**
-	 * Returns the day
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Returns the day
 	 */
 	int getDay() const;
 
 	/**
-	 * Returns the year
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Returns the year
 	 */
 	int getYear() const;
 
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Returns the number of upDate objects
+	 */
 	static int GetDateCount();
 
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Returns the month same as a string
+	 */
 	std::string getMonthName();
 
-
 	/**
-	 * Returns the days between this date and the start of the year
-	 */
-	int getYearOffset() const;
-
-	void setDate(int M, int D, int Y);
-
-	/**
-	 * Returns the Julian number of this date
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Return the julian number
 	 */
 	double julian() const;
 
 	/**
-	 * Returns a upDate object that is calculated from the julian number
+	 * Precondition:
+	 * 		julian is positive
+	 * Postcondition:
+	 * 		Returns a upDate object that is calculated from the julian number
 	 */
 	static upDate returnGregorian(int julian);
 
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Overloads the << operator with the to string of this class
+	 */
     friend std::ostream& operator<<(std::ostream& os, const upDate& date);
 
-
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Adds an int + upDate
+	 */
 	friend upDate operator +(int N,const upDate& date);
 
-
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Post-increment the date by 1
+	 */
 	upDate& operator ++();
 
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Pre-increment the date by 1
+	 */
 	upDate operator ++(int);
 
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Post-decrement the date by 1
+	 */
 	upDate& operator --();
 
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Pre-decrement the date by 1
+	 */
 	upDate operator --(int);
 
 	/**
-	 * Increment the date by N
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Increment the date by N
 	 */
 	upDate operator +(int N);
 
 	/**
-	 * Decrement the date by N
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Decrement the date by N
 	 */
 	upDate operator -(int N);
 
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Decrement the date by another date
+	 */
 	int operator -(const upDate& date);
 
 	/**
-	 * Overload the greater than
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Returns true if this date is greater than the other date else false
 	 */
 	bool operator >(const upDate & date);
 
 	/**
-	 * Overload the less than
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Returns true if this date is less than the other date else false
 	 */
 	bool operator <(const upDate & date);
 
 	/**
-	 * Overload the greater than or equal to
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Returns true if this date is greater than or equal to than the other date else false
 	 */
 	bool operator >=(const upDate & date);
 
 	/**
-	 * Overload the less than or equal to
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Returns true if this date is less than or equal to than the other date else false
 	 */
 	bool operator <=(const upDate & date);
 
 	/**
-	 * Overload the equals
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Returns true if this date is equal to the other date else false
 	 */
 	bool operator ==(const upDate & date);
 
 	/**
-	 * Overload the not equals
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Returns true if this date is not equal to the other date else false
 	 */
 	bool operator !=(const upDate & date);
 

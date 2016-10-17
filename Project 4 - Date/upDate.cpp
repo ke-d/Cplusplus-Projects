@@ -9,9 +9,13 @@
 
 using namespace std;
 
-int upDate::numOfDateObjects = 0;
 /**
- * Default constructor
+ * Initialize numOfDateObjects to 0
+ */
+int upDate::numOfDateObjects = 0;
+
+/**
+ * Creates a upDate with the default
  */
 upDate::upDate() {
 	iptr = new int[3];
@@ -20,7 +24,7 @@ upDate::upDate() {
 }
 
 /**
- * Constructor that takes in the month, day, and year
+ * Creates a upDate with M, D, Y
  */
 upDate::upDate(int M, int D, int Y) {
 	iptr = new int[3];
@@ -28,6 +32,9 @@ upDate::upDate(int M, int D, int Y) {
 	setDate(M, D, Y);
 }
 
+/**
+ * Creates a clone of date
+ */
 upDate::upDate(const upDate& date) {
 	iptr = new int[3];
 	++numOfDateObjects;
@@ -36,13 +43,17 @@ upDate::upDate(const upDate& date) {
 	iptr[2] = date.getYear();
 }
 
+/**
+ * Destructor for update
+ */
 upDate::~upDate() {
 	delete[] iptr;
 	numOfDateObjects--;
 //	iptr = nullptr;
 }
+
 /**
- * Sets the default date
+ * Sets the date to May 11, 1959
  */
 void upDate::defaultDate() {
 	iptr[0] = 5;
@@ -50,6 +61,9 @@ void upDate::defaultDate() {
 	iptr[2] = 1959;
 }
 
+/**
+ * Sets the date to M, D, Y for month, day, year respectively
+ */
 void upDate::setDate(int M, int D, int Y) {
 	iptr[0] = M;
 	iptr[1] = D;
@@ -66,7 +80,6 @@ void upDate::setDate(int M, int D, int Y) {
 
 }
 
-
 /**
  * Calculates the days between D and this date
  */
@@ -81,6 +94,9 @@ int upDate::getMonth() const {
 	return iptr[0];
 }
 
+/**
+ * Returns the toString of the month
+ */
 std::string upDate::getMonthName() {
 	switch(iptr[0]) {
 	case 1:
@@ -137,6 +153,9 @@ int upDate::getYear() const {
 	return iptr[2];
 }
 
+/**
+ * Return the amount of upDate objects in the program
+ */
 int upDate::GetDateCount() {
 	return numOfDateObjects;
 }
@@ -175,6 +194,9 @@ upDate upDate::returnGregorian(int julian) {
 	return upDate(month, day, year);
 }
 
+/**
+ * Update this upDate object with the julian
+ */
 void upDate::updateFromGregorian(int julian) {
 	int year, month, day;
 	int L = julian + 68569;
@@ -193,6 +215,9 @@ void upDate::updateFromGregorian(int julian) {
 	iptr[2] = year;
 }
 
+/**
+ * Overloads the << with the toString of this class
+ */
 std::ostream& operator<<(std::ostream& os, const upDate& date) {
 	os << date.iptr[0] <<"/" << date.iptr[1]<<"/"<<date.iptr[2];
 	return os;
@@ -208,31 +233,45 @@ upDate upDate::operator +(int N) {
 	return upDate(newCalendar.getMonth(), newCalendar.getDay(), newCalendar.getYear());
 }
 
-
+/**
+ * Post-Increment the date by 1
+ */
 upDate& upDate::operator ++() {
 	int jul = this->julian() + 1;
 	updateFromGregorian(jul);
 	return *this;
 }
 
+/**
+ * Pre-Increment the date by 1
+ */
 upDate upDate::operator ++(int int1) {
 	upDate temp = *this;
 	++*this;
 	return temp;
 }
 
+/**
+ * Post-Decrement the date by 1
+ */
 upDate& upDate::operator --() {
 	int jul = this->julian() - 1;
 	updateFromGregorian(jul);
 	return *this;
 }
 
+/**
+ * Pre-Decrement the date by 1
+ */
 upDate upDate::operator --(int int1) {
 	upDate temp = *this;
 	--*this;
 	return temp;
 }
 
+/**
+ * Adds a int + upDate object
+ */
 upDate operator +(int N,const upDate& date) {
 	int jul = date.julian() + N;
 	upDate newCalendar = date.returnGregorian(jul);
@@ -248,7 +287,9 @@ upDate upDate::operator -(int N) {
 	return upDate(newCalendar.getMonth(), newCalendar.getDay(), newCalendar.getYear());
 }
 
-
+/**
+ * Subtract this date with another date
+ */
 int upDate::operator -(const upDate& date) {
 	return this->julian() - date.julian();
 }
