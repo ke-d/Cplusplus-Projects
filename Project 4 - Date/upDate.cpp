@@ -161,14 +161,6 @@ int upDate::GetDateCount() {
 }
 
 /**
- * Returns the days between this date and the start of the year
- */
-int upDate::getYearOffset() const {
-	upDate start(1, 1, iptr[2]);
-	return julian() - start.julian();
-}
-
-/**
  * Returns the Julian number of this date
  */
 double upDate::julian() const {

@@ -11,11 +11,13 @@ using namespace std;
 int main() {
 	upDate testDate(1,1,2015);
 	upDate testDate2(testDate);
+	upDate testDate3 = 5 + testDate2;
 	++testDate;
 	--testDate2;
 	cout << testDate<<endl;
 	cout << testDate2<<endl;
-	cout << testDate.julian();
+	cout << testDate3<<endl;
+	cout << upDate::GetDateCount()<<endl;
 	return 0;
 }
 
