@@ -215,14 +215,20 @@ std::ostream& operator<<(std::ostream& os, const upDate& date) {
 	return os;
 }
 
-
+/**
+ * Assign this upDate to date
+ */
+void upDate::operator =(const upDate & date) {
+	iptr[0] = date.getMonth();
+	iptr[1] = date.getDay();
+	iptr[2] = date.getYear();
+}
 /**
  * Increment the date by N
  */
 upDate upDate::operator +(int N) {
 	int jul = julian() + N;
-	upDate newCalendar = returnGregorian(jul);
-	return upDate(newCalendar.getMonth(), newCalendar.getDay(), newCalendar.getYear());
+	return returnGregorian(jul);
 }
 
 /**
@@ -266,8 +272,7 @@ upDate upDate::operator --(int int1) {
  */
 upDate operator +(int N,const upDate& date) {
 	int jul = date.julian() + N;
-	upDate newCalendar = date.returnGregorian(jul);
-	return upDate(newCalendar.getMonth(), newCalendar.getDay(), newCalendar.getYear());
+	return date.returnGregorian(jul);
 }
 
 /**
@@ -275,8 +280,7 @@ upDate operator +(int N,const upDate& date) {
  */
 upDate upDate::operator -(int N) {
 	int jul = julian() - N;
-	upDate newCalendar = returnGregorian(jul);
-	return upDate(newCalendar.getMonth(), newCalendar.getDay(), newCalendar.getYear());
+	return returnGregorian(jul);
 }
 
 /**

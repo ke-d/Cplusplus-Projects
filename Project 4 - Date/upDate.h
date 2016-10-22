@@ -155,6 +155,14 @@ public:
 	 * Precondition:
 	 * 		None
 	 * Postcondition:
+	 * 		Assign this upDate to date
+	 */
+    void operator =(const upDate & date);
+
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
 	 * 		Adds an int + upDate
 	 */
 	friend upDate operator +(int N,const upDate& date);
