@@ -9,7 +9,8 @@
 #define SNAKE_H_
 #include "Reptile.h"
 class Snake : public Reptile {
-
+public:
+	Snake();
 };
 
 

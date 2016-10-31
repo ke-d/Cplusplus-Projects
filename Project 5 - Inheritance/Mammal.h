@@ -7,9 +7,10 @@
 
 #ifndef MAMMAL_H_
 #define MAMMAL_H_
-
+#include "Animal.h"
 class Mammal : public Animal {
-
+public:
+	std::string move() const;
 };
 
 

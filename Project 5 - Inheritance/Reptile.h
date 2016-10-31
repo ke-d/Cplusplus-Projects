@@ -11,13 +11,8 @@
 #include <iostream>
 class Reptile : public Animal {
 public:
-	Reptile();
 	std::string talk() const;
 	std::string move() const;
-    friend std::ostream& operator<<(std::ostream& os, const Reptile& rep);
-protected:
-	std::string * animalType;
-
 };
 
 
