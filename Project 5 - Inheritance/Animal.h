@@ -13,8 +13,10 @@ class Animal {
 public:
 	virtual std::string talk() const = 0;
 	virtual std::string move() const = 0;
+	static int getAnimalNum();
 	friend std::ostream& operator<<(std::ostream& os, const Animal& ani);
 protected:
+	static int animalNum;
 	std::string * animalType;
 	Animal();
 	virtual ~Animal();

@@ -17,6 +17,32 @@
 #include "Snake.h"
 
 using namespace std;
+/**
+ * Returns the integer of the menu selection of the user
+ */
+int menu() {
+	cout << "1) Add" <<endl;
+	cout << "2) Remove" <<endl;
+	cout << "3) Display all animals" <<endl;
+	cout << "4) Display animal count" <<endl;
+	cout << "5) Exit" <<endl;
+	char choice;
+	choice = cin.get();
+	cin.ignore(256, '\n');
+	choice -= 48;
+	while((int) choice < 1 || (int) choice > 5 ) {
+		//Ï = 139 in char
+		if(choice = 139) {
+			//Terminates cleanly
+			return 5;
+		}
+		cout << "Please pick a valid choice." <<endl;
+		choice = cin.get();
+		choice -= 48;
+		cin.ignore(256, '\n');
+	}
+	return choice;
+}
 
 void UnitTest() {
 	Lizard r2;
@@ -40,12 +66,28 @@ void UnitTest() {
 	Lion m3;
 	cout<< m3<<endl;
 
+	cout << Animal::getAnimalNum()<<endl;
 }
 
 int main() {
 //	UnitTest();
-	Animal * ani = new Hyena;
-	cout << *ani;
+	Animal * aniPtr[] = Animal[10];
+	int menu = menu();
+	while(menu != 5) {
+		switch(menu) {
+		case 1:
+			addAnimal(Animal * zoo);
+			break;
+		case 2:
+			removeAnimal(Animal * zoo);
+			break;
+		}
+		case 3:
+			display(Animal * zoo);
+			break;
+		case 4:
+			cout << Animal::getAnimalNum();
+	}
 	return 0;
 }
 
