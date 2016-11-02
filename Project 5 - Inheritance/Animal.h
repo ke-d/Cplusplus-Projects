@@ -15,11 +15,11 @@ public:
 	virtual std::string move() const = 0;
 	static int getAnimalNum();
 	friend std::ostream& operator<<(std::ostream& os, const Animal& ani);
+	virtual ~Animal();
 protected:
 	static int animalNum;
 	std::string * animalType;
 	Animal();
-	virtual ~Animal();
 };
 
 
