@@ -2,7 +2,7 @@
  * Lizard.h
  *
  *  Created on: Oct 31, 2016
- *      Author: kdo70
+ *      Author: Kenny Do
  */
 
 #ifndef LIZARD_H_
@@ -11,7 +11,20 @@
 
 class Lizard : public Reptile {
 public:
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Constructor for lizard
+	 */
 	Lizard();
+
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Returns how the lizard moves
+	 */
 	std::string move() const;
 };
 

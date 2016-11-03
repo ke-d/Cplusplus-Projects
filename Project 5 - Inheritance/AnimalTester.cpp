@@ -2,7 +2,7 @@
  * AnimalTester.cpp
  *
  *  Created on: Oct 26, 2016
- *      Author: kdo70
+ *      Author: Kenny Do
  */
 
 #include <iostream>
@@ -18,6 +18,9 @@
 
 using namespace std;
 
+/**
+ * Enum of Animals
+ */
 enum AnimalName{BEAR = 1, CHICKEN = 2, EAGLE = 3, HYENA = 4, LION = 5, LIZARD = 6, SNAKE = 7};
 /**
  * Returns the integer of the menu selection of the user
@@ -33,31 +36,9 @@ int menu() {
 	return choice;
 }
 
-void UnitTest() {
-	Lizard r2;
-	cout << r2<<endl;
-
-	Snake r3;
-	cout << r3<<endl;
-
-	Eagle b1;
-	cout << b1<<endl;
-
-	Chicken b2;
-	cout << b2<<endl;
-
-	Bear m1;
-	cout<< m1<<endl;
-
-	Hyena m2;
-	cout<< m2<<endl;
-
-	Lion m3;
-	cout<< m3<<endl;
-
-	cout << Animal::getAnimalNum()<<endl;
-}
-
+/**
+ * Add an animal to the zoo
+ */
 void addAnimal(Animal * zoo[]) {
 	int cageNum;
 	int animalNum;
@@ -104,6 +85,9 @@ void addAnimal(Animal * zoo[]) {
 
 }
 
+/**
+ * Remove an animal from a zoo
+ */
 void removeAnimal(Animal * zoo[]) {
 	int cageNum;
 	cout << "Enter a cage number to remove"<<endl;
@@ -119,7 +103,9 @@ void removeAnimal(Animal * zoo[]) {
 
 }
 
-
+/**
+ * Displays the animals in the zoo
+ */
 void display(Animal * zoo[]) {
 	for(int i = 0; i < 10; ++i) {
 		if (zoo[i] != NULL) {
@@ -131,9 +117,7 @@ void display(Animal * zoo[]) {
 
 }
 
-
 int main() {
-//	UnitTest();
 	Animal * aniPtr[10] = {NULL};
 	int inputMenu = menu();
 	while(inputMenu != 5) {

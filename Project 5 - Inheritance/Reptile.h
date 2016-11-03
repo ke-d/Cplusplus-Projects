@@ -2,7 +2,7 @@
  * Reptile.h
  *
  *  Created on: Oct 26, 2016
- *      Author: kdo70
+ *      Author: Kenny Do
  */
 
 #ifndef REPTILE_H_
@@ -11,7 +11,20 @@
 #include <iostream>
 class Reptile : public Animal {
 public:
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Returns how the reptile talks
+	 */
 	std::string talk() const;
+
+	/**
+	 * Precondition:
+	 * 		None
+	 * Postcondition:
+	 * 		Returns how the reptile moves
+	 */
 	std::string move() const;
 };
 
