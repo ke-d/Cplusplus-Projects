@@ -4,13 +4,16 @@
  *  Created on: Nov 10, 2016
  *      Author: Kenny Do
  */
-#include <iostream>
-#include <vector>
-#include <cstdlib>
+
 #include <time.h>
 #include <algorithm>
+#include <cstdlib>
 #include <iomanip>
+#include <iostream>
+#include <iterator>
 #include <map>
+#include <utility>
+#include <vector>
 
 using namespace std;
 
@@ -27,7 +30,7 @@ void displayVector(vector<int> & nums) {
 		if(count % 50 == 0) {
 			cout << endl;
 		}
-		cout << setw(4) << (*it);
+		cout << left << setw(4) << (*it);
 	}
 }
 
@@ -46,27 +49,42 @@ double calculateAverage(vector<int> & nums) {
 void calculateNumTimesInList(vector<int> & nums, map<int, int> & times) {
 	for(vector<int>::iterator it = nums.begin(); it != nums.end(); ++it) {
 		map<int,int>::iterator index = times.find(*it);
-		if(index != nums.end()) {
-			int count = *index;
-			++count;
-			times.insert(pair<int, int>(*it, count));
+		if(index != times.end()) {
+			++index->second;
 		} else {
 			times.insert(pair<int, int>(*it, 1));
 		}
 	}
 }
 
+void printTimes(map<int, int> & times) {
+	int count = 0;
+	for(map<int, int>::iterator it = times.begin(); it != times.end(); ++it) {
+		++count;
+		cout << it->first << ":" << setw(10) << it->second;
+		if(count % 10 == 0) {
+			cout <<endl;
+		}
+	}
+}
 int main() {
 	srand(time(NULL));
 	vector<int> nums;
 	generateNumbers(nums);
 	sort(nums.begin(), nums.end());
 //	cout << nums.size();
+
 	displayVector(nums);
-	cout << calculateTotal(nums) <<endl;
-	cout << calculateAverage(nums) <<endl;
+	cout<<endl;
+	cout << "Sum: " << calculateTotal(nums) <<endl;
+	cout<<endl;
+	system("pause");
+
+	cout << "Average: " << calculateAverage(nums) <<endl;
 	map<int, int> times;
 	calculateNumTimesInList(nums, times);
+	cout<<endl;
+	printTimes(times);
 	return 0;
 }
 
