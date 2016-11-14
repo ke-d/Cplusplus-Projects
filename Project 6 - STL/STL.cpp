@@ -32,7 +32,7 @@ void generateNumbers(vector<int> & nums, int total) {
 void displayVector(vector<int> & nums) {
 	int count = 0;
 	for(vector<int>::iterator it = nums.begin(); it != nums.end(); ++it) {
-		if(count % 50 == 0) {
+		if(count % 100 == 0) {
 			cout << endl;
 		}
 		cout << left << setw(4) << (*it);
